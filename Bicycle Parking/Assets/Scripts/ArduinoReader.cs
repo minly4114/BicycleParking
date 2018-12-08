@@ -4,28 +4,28 @@ using System.Threading.Tasks;
 
 public class ArduinoReader
 {
-
-	private ElevatorController _controller;
+	private ElevatorSystem _elSys;
 	private SerialPort sPort;
 
-	public ArduinoReader (ElevatorController controller)
+	public ArduinoReader (ElevatorSystem elSys)
 	{
-		_controller = controller;
-		sPort = "COM7"; // TODO: hardcoded string! We are need COM checker to find Arduino
-		Task task = new Task (() => ReadCycle ()).Start ();
+		_elSys = elSys;
+        sPort = new SerialPort("COM7");	
+        Task task = new Task(() => ReadCycle());
+        task.Start();
 	}
 
 	private void ReadCycle ()
 	{
 		try
 		{
-			sPort.Open ();
+            sPort.Open();
 			while (true)
 			{
 				if (sPort.BytesToRead > 0)
 				{
 					string msg = sPort.ReadLine ();
-					_controller.FindNewCard (msg);
+					_elSys.FindNewCard (msg);
 				}
 				Thread.Sleep (10);
 			}

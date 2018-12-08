@@ -1,37 +1,46 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
-public class ElevatorSystem
+public class ElevatorSystem : MonoBehaviour
 {
+	Dictionary<int?, string> ParkingMap;
 
-	private ArduinoReader reader;
-	Dictionary<int, string> ParkingMap;
-	public ElevatorSystem ()
-	{
-		InitializeParking ();
-		reader = new ArduinoReader (this);
-	}
+    private void Start()
+    {
+        InitializeParking();
+        new ArduinoReader(this);
+    }
 
-	public void FindNewCard (string cardId)
+    public void FindNewCard (string cardId)
 	{
-		var parkingNumber = ParkingMap.Select (a => a.Value == cardId);
-		if (parkingNumber != null)
-		{
-			// TODO: GetBicycle from the parking
-		}
-		else
-		{
-			var parkingPlace = ParkingMap.Select (a => a.Value == null);
-			// TODO: SetBicycle to the parking
-		}
-	}
+        var parkingPlaces = ParkingMap.Where(a => a.Value == cardId).Select(a => a.Key);
+
+        if (parkingPlaces.Count() > 0)
+        {
+
+            // TODO: GetBicycle from the parking
+        }
+        else
+        {
+            var parkingPlace = ParkingMap.FirstOrDefault(a => a.Value == null);
+            ParkingMap[parkingPlace.Key] = cardId;
+
+            // TODO: SetBicycle to the parking
+        }
+    }
 
 	private void InitializeParking ()
 	{
-		ParkingMap = new Dictionary<string, int> ();
+		ParkingMap = new Dictionary<int?, string> ();
 		for (int i = 0; i < 100; i++)
 		{
 			ParkingMap.Add (i, null);
 		}
 	}
+
+    public void WriteLog(string msg)
+    {
+        Debug.Log(msg);
+    }
 }
