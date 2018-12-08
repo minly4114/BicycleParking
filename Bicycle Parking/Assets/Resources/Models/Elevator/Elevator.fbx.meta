@@ -1,0 +1,310 @@
+fileFormatVersion: 2
+guid: fccbda7c91b851a4d9d6bda9688ca67d
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Base
+    100002: Basement
+    100004: //RootNode
+    100006: hand 1
+    100008: hand 2
+    100010: Hand mover
+    100012: Handebase
+    100014: Place001
+    100016: Place002
+    100018: Place003
+    100020: Place004
+    100022: Place005
+    100024: Place006
+    100026: Place007
+    100028: Place008
+    100030: Place009
+    100032: Place010
+    100034: Place011
+    100036: Place012
+    100038: Place013
+    100040: Place014
+    100042: Place015
+    100044: Place016
+    100046: Place017
+    100048: Place018
+    100050: Place019
+    100052: Place020
+    100054: Place021
+    100056: Place022
+    100058: Place023
+    100060: Place024
+    100062: Place025
+    100064: Place026
+    100066: Place027
+    100068: Place028
+    100070: Place029
+    100072: Place030
+    100074: Place031
+    100076: Place032
+    100078: PlaceHande
+    100080: Ring mover
+    100082: Ring roof
+    100084: Ring001
+    100086: Roof
+    100088: Walls
+    400000: Base
+    400002: Basement
+    400004: //RootNode
+    400006: hand 1
+    400008: hand 2
+    400010: Hand mover
+    400012: Handebase
+    400014: Place001
+    400016: Place002
+    400018: Place003
+    400020: Place004
+    400022: Place005
+    400024: Place006
+    400026: Place007
+    400028: Place008
+    400030: Place009
+    400032: Place010
+    400034: Place011
+    400036: Place012
+    400038: Place013
+    400040: Place014
+    400042: Place015
+    400044: Place016
+    400046: Place017
+    400048: Place018
+    400050: Place019
+    400052: Place020
+    400054: Place021
+    400056: Place022
+    400058: Place023
+    400060: Place024
+    400062: Place025
+    400064: Place026
+    400066: Place027
+    400068: Place028
+    400070: Place029
+    400072: Place030
+    400074: Place031
+    400076: Place032
+    400078: PlaceHande
+    400080: Ring mover
+    400082: Ring roof
+    400084: Ring001
+    400086: Roof
+    400088: Walls
+    2100000: No Name
+    2300000: Base
+    2300002: Basement
+    2300004: hand 1
+    2300006: hand 2
+    2300008: Hand mover
+    2300010: Handebase
+    2300012: Place001
+    2300014: Place002
+    2300016: Place003
+    2300018: Place004
+    2300020: Place005
+    2300022: Place006
+    2300024: Place007
+    2300026: Place008
+    2300028: Place009
+    2300030: Place010
+    2300032: Place011
+    2300034: Place012
+    2300036: Place013
+    2300038: Place014
+    2300040: Place015
+    2300042: Place016
+    2300044: Place017
+    2300046: Place018
+    2300048: Place019
+    2300050: Place020
+    2300052: Place021
+    2300054: Place022
+    2300056: Place023
+    2300058: Place024
+    2300060: Place025
+    2300062: Place026
+    2300064: Place027
+    2300066: Place028
+    2300068: Place029
+    2300070: Place030
+    2300072: Place031
+    2300074: Place032
+    2300076: PlaceHande
+    2300078: Ring mover
+    2300080: Ring roof
+    2300082: Ring001
+    2300084: Roof
+    2300086: Walls
+    3300000: Base
+    3300002: Basement
+    3300004: hand 1
+    3300006: hand 2
+    3300008: Hand mover
+    3300010: Handebase
+    3300012: Place001
+    3300014: Place002
+    3300016: Place003
+    3300018: Place004
+    3300020: Place005
+    3300022: Place006
+    3300024: Place007
+    3300026: Place008
+    3300028: Place009
+    3300030: Place010
+    3300032: Place011
+    3300034: Place012
+    3300036: Place013
+    3300038: Place014
+    3300040: Place015
+    3300042: Place016
+    3300044: Place017
+    3300046: Place018
+    3300048: Place019
+    3300050: Place020
+    3300052: Place021
+    3300054: Place022
+    3300056: Place023
+    3300058: Place024
+    3300060: Place025
+    3300062: Place026
+    3300064: Place027
+    3300066: Place028
+    3300068: Place029
+    3300070: Place030
+    3300072: Place031
+    3300074: Place032
+    3300076: PlaceHande
+    3300078: Ring mover
+    3300080: Ring roof
+    3300082: Ring001
+    3300084: Roof
+    3300086: Walls
+    4300000: Base
+    4300002: Place011
+    4300004: Place013
+    4300006: Place015
+    4300008: Place009
+    4300010: Place019
+    4300012: Place021
+    4300014: Place023
+    4300016: Place017
+    4300018: Place003
+    4300020: Place005
+    4300022: Place007
+    4300024: Place001
+    4300026: Place027
+    4300028: Place029
+    4300030: Place031
+    4300032: Place025
+    4300034: Place012
+    4300036: Place014
+    4300038: Place016
+    4300040: Place010
+    4300042: Place020
+    4300044: Place022
+    4300046: Place024
+    4300048: Place018
+    4300050: Place004
+    4300052: Place006
+    4300054: Place008
+    4300056: Place002
+    4300058: Place028
+    4300060: Place030
+    4300062: Place032
+    4300064: Place026
+    4300066: Ring001
+    4300068: Ring mover
+    4300070: Handebase
+    4300072: PlaceHande
+    4300074: Hand mover
+    4300076: hand 2
+    4300078: hand 1
+    4300080: Ring roof
+    4300082: Walls
+    4300084: Roof
+    4300086: Basement
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

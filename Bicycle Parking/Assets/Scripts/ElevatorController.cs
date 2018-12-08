@@ -10,8 +10,12 @@ public class ElevatorController : MonoBehaviour {
     public float ElevatorVerticalSpeed = 1.0f;
     public float ElevatorRotationSpeed = 0.5f;
 
-    //public GameObject Elevator;
     public GameObject BicyclesArray;
+    public GameObject HandMover;
+    public GameObject RingMover;
+    public GameObject PlaceHandle;
+    public GameObject Hand1;
+    public GameObject Han2;
 
     private GameObject _bicycle;
 
@@ -22,51 +26,77 @@ public class ElevatorController : MonoBehaviour {
 
     private void DoAction()
     {
-        Vector3 angles = transform.rotation.eulerAngles;
+        Vector3 angles = RingMover.transform.rotation.eulerAngles;
         switch (State)
         {
             case States.Up:
-                transform.position += Vector3.up * Time.deltaTime * ElevatorVerticalSpeed;
+                Up();
                 break;
             case States.Down:
-                transform.position += Vector3.down * Time.deltaTime * ElevatorVerticalSpeed;
+                Down();
                 break;
-            case States.Right:               
-                transform.rotation = Quaternion.Euler(angles.x, angles.y+ElevatorRotationSpeed, angles.z);
+            case States.Right:
+                Right();
                 break;
             case States.Left:
-                transform.rotation = Quaternion.Euler(angles.x, angles.y - ElevatorRotationSpeed, angles.z);
+                Left();
                 break;
             case States.Forvard:
-                transform.position += transform.forward * Time.deltaTime * ElevatorVerticalSpeed;
+                Forward();
                 break;
             case States.Back:
-                transform.position += -transform.forward * Time.deltaTime * ElevatorVerticalSpeed;
+                Back();
                 break;
         }
     }
-    public void OnTriggerEnter(Collider other)
+    private void Up()
     {
-        if (other.gameObject.tag =="Bicycle")
-        {
-            Debug.Log(other.transform.position);
-            AttachBicycle(other.gameObject);
-            Debug.Log(other.transform.position);
-        }
-        
+        PlaceHandle.transform.position += Vector3.up * Time.deltaTime * ElevatorVerticalSpeed;
     }
+    private void Down()
+    {
+        PlaceHandle.transform.position += Vector3.down * Time.deltaTime * ElevatorVerticalSpeed;
+    }
+    private void Right()
+    {
+        Vector3 angles = RingMover.transform.rotation.eulerAngles;
+        RingMover.transform.rotation = Quaternion.Euler(angles.x, angles.y, angles.z + ElevatorRotationSpeed);
+    }
+    private void Left()
+    {
+        Vector3 angles = RingMover.transform.rotation.eulerAngles;
+        RingMover.transform.rotation = Quaternion.Euler(angles.x, angles.y, angles.z - ElevatorRotationSpeed);
+    }
+    private void Forward()
+    {
+        float max = 0.0508f;
+        if(HandMover.transform.localPosition.x < max)
+        {
+            HandMover.transform.position += HandMover.transform.right * Time.deltaTime * ElevatorVerticalSpeed;
+        }
+    }
+    private void Back()
+    {
+        float min = -0.0377f;
+        if(HandMover.transform.localPosition.x > min)
+        {
+            HandMover.transform.position += -HandMover.transform.right * Time.deltaTime * ElevatorVerticalSpeed;
+        }
+    }
+
 
     public void AttachBicycle(GameObject bicycle)
     {
         if (_bicycle == null)
         {
             _bicycle = bicycle;
-            _bicycle.transform.parent = transform;
-            bicycle.transform.position = new Vector3(transform.position.x , transform.position.y , transform.position.z );
+            _bicycle.GetComponent<FixedJoint>().connectedBody = HandMover.GetComponent<Rigidbody>();
+            _bicycle.GetComponent<Rigidbody>().isKinematic = false;
         }
     }
-    public void DeattachBicycle()
+    private void DeattachBicycle()
     {
         _bicycle.transform.parent = BicyclesArray.transform;
     }
+
 }
