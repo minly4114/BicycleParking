@@ -10,6 +10,11 @@ public class ElevatorController : MonoBehaviour {
     public float ElevatorVerticalSpeed = 1.0f;
     public float ElevatorRotationSpeed = 0.5f;
 
+    //public GameObject Elevator;
+    public GameObject BicyclesArray;
+
+    private GameObject _bicycle;
+
     private void FixedUpdate()
     {
         DoAction();
@@ -39,5 +44,29 @@ public class ElevatorController : MonoBehaviour {
                 transform.position += -transform.forward * Time.deltaTime * ElevatorVerticalSpeed;
                 break;
         }
+    }
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag =="Bicycle")
+        {
+            Debug.Log(other.transform.position);
+            AttachBicycle(other.gameObject);
+            Debug.Log(other.transform.position);
+        }
+        
+    }
+
+    public void AttachBicycle(GameObject bicycle)
+    {
+        if (_bicycle == null)
+        {
+            _bicycle = bicycle;
+            _bicycle.transform.parent = transform;
+            bicycle.transform.position = new Vector3(transform.position.x , transform.position.y , transform.position.z );
+        }
+    }
+    public void DeattachBicycle()
+    {
+        _bicycle.transform.parent = BicyclesArray.transform;
     }
 }
