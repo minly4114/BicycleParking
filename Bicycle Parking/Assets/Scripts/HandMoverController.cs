@@ -12,9 +12,7 @@ public class HandMoverController : MonoBehaviour {
     {
         if (other.gameObject.tag == "Bicycle")
         {
-            Debug.Log(other.transform.position);
             BlackBox.GetComponent<ElevatorController>().AttachBicycle(other.gameObject);
-            Debug.Log(other.transform.position);
         } 
     }
 }
