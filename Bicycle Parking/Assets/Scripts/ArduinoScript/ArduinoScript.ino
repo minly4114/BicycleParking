@@ -9,8 +9,6 @@
 
 MFRC522 rfid(SS_PIN, RST_PIN); // Instance of the class
 
-byte nuidPICC[4];
-
 void setup() {
   pinMode(GREEN_LED, OUTPUT);
   pinMode(RED_LED, OUTPUT);
@@ -37,18 +35,8 @@ void loop() {
     return;
   }
   
-  if (rfid.uid.uidByte[0] != nuidPICC[0] || 
-    rfid.uid.uidByte[1] != nuidPICC[1] || 
-    rfid.uid.uidByte[2] != nuidPICC[2] || 
-    rfid.uid.uidByte[3] != nuidPICC[3] ) {
-
-    // Store NUID into nuidPICC array
-    for (byte i = 0; i < 4; i++) {
-      nuidPICC[i] = rfid.uid.uidByte[i];
-    }
-    printHex(rfid.uid.uidByte, rfid.uid.size);
-    Serial.println();
-  }
+  printHex(rfid.uid.uidByte, rfid.uid.size);
+  Serial.println();
 
   // Halt PICC
   rfid.PICC_HaltA();

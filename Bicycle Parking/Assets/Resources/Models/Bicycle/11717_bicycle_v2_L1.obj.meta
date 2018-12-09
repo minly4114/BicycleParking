@@ -23,6 +23,7 @@ ModelImporter:
     2100006: Object003Mat
     2100008: Wheel_backMat
     2100010: Wheel_frontMat
+    2100012: bicycle
     2300000: bicycle
     2300002: Object001
     2300004: Object002

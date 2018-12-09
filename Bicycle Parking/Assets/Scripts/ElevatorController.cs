@@ -7,8 +7,8 @@ public class ElevatorController : MonoBehaviour {
     public enum States {Up, Down, Right, Left, Forward, Back, Idle };
     public States State = States.Idle;
 
-    public float ElevatorVerticalSpeed = 1.0f;
-    public float ElevatorRotationSpeed = 0.5f;
+    public float ElevatorVerticalSpeed = 2.0f;
+    public float ElevatorRotationSpeed = 0.7f;
 
     public GameObject BicyclesArray;
     public GameObject HandMover;
@@ -22,22 +22,21 @@ public class ElevatorController : MonoBehaviour {
     private int currentLevel = 0;
     public int angle = 0;
     private int currentAngle = 0;
-    private float max = 0.0508f;
-    private float min = -0.0377f;
+    private readonly float max = 0.051f;
+    private readonly float min = -0.0377f;
     public bool isCompleted = true;
     public bool desiredState = false;
     public bool isBicycleSet = false;
+    public bool isTaskCompleted = false;
 
     private void Start()
     {
         isCompleted = true;
-        SetLevelAndAngle(1, 0);
     }
 
     private void FixedUpdate()
     {
-        DoAction();
-        Debug.Log(isCompleted);
+        DoAction();      
     }
 
     private void DoAction()
@@ -65,6 +64,9 @@ public class ElevatorController : MonoBehaviour {
                 break;
         }
     }
+
+    #region Movement
+
     private void Up()
     {
         PlaceHandle.transform.position += Vector3.up * Time.deltaTime * ElevatorVerticalSpeed;
@@ -105,41 +107,60 @@ public class ElevatorController : MonoBehaviour {
         }
     }
 
+    #endregion
+
+    #region BicycleActions
+
     //присоединяем велосипед
     public void AttachBicycle(GameObject bicycle)
     {
-        if (!isBicycleSet && isCompleted)
+        if (!isTaskCompleted)
         {
             _bicycle = bicycle;
-            _bicycle.GetComponent<FixedJoint>().connectedBody = HandMover.GetComponent<Rigidbody>();
-            _bicycle.GetComponent<Rigidbody>().isKinematic = false;
-            isBicycleSet = true;
-            SetLevelAndAngle(2, 0);
-        }   
-    }
-    //отсоединяем велосипед
-    private void DeattachBicycle()
-    {
-        if(isBicycleSet)
-        {
-            _bicycle.GetComponent<FixedJoint>().connectedBody = null;
-            _bicycle.GetComponent<Rigidbody>().isKinematic = true;
-            _bicycle = null;
+            Attach();
         }
     }
-    //устанавливает куда нам нужно попасть
-    public void SetLevelAndAngle(int level, int angle)
+
+    private void Attach()
+    {     
+        _bicycle.GetComponent<FixedJoint>().connectedBody = HandMover.GetComponent<Rigidbody>();
+        _bicycle.GetComponent<Rigidbody>().isKinematic = false;
+    }
+
+    private void BicycleActions()
+    {
+        if (!isTaskCompleted)
+        {
+            if (isBicycleSet)
+            {
+                _bicycle.GetComponent<FixedJoint>().connectedBody = null;
+                _bicycle.GetComponent<Rigidbody>().isKinematic = true;
+                _bicycle = null;
+                isBicycleSet = false;
+                isTaskCompleted = true;
+            }
+            else if (!isBicycleSet)
+            {
+                isTaskCompleted = true;
+                Attach();
+            }
+        }
+    }
+
+    #endregion
+
+
+    public bool BicycleParkingEvent(int level, int angle, bool setBike)
     {
         this.level = level;
-        this.angle = angle;
-        State = States.Back;
+        this.angle = angle;      
         isCompleted = false;
         desiredState = false;
-        if(_bicycle!=null)
-        {
-            isBicycleSet = true;
-        }
+        isBicycleSet = setBike;
+        State = States.Back;
+        return true;
     }
+
     //меняет текущее положение
     public void TriggerEvent(string name)
     {
@@ -153,6 +174,7 @@ public class ElevatorController : MonoBehaviour {
         }
         Planning();
     }
+
     //говорит куда ехать
     private void Planning()
     {
@@ -194,10 +216,18 @@ public class ElevatorController : MonoBehaviour {
         {
             State = States.Idle;
             isCompleted = true;
+            if (_bicycle != null)
+            {
+                _bicycle.GetComponent<FixedJoint>().connectedBody = null;
+                _bicycle.GetComponent<Rigidbody>().isKinematic = true;
+                _bicycle.transform.position += _bicycle.transform.right * 0.2f;
+                _bicycle = null;
+            }
+            isTaskCompleted = false;       
         }
         else
         {
-            DeattachBicycle();
+            BicycleActions();
             level = 0;
             angle = 0;
             State = States.Back;
@@ -210,5 +240,10 @@ public class ElevatorController : MonoBehaviour {
         {
             State = States.Forward;
         }
+    }
+
+    public bool IsBicycleAttached()
+    {
+        return _bicycle != null;
     }
 }

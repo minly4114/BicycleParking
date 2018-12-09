@@ -1,43 +1,25 @@
 ﻿using System.IO.Ports;
 using System.Threading;
 using System.Threading.Tasks;
+using UnityEngine;
 
-public class ArduinoReader
+public class ArduinoReader : MonoBehaviour
 {
-	private ElevatorSystem _elSys;
+	public ElevatorSystem _elSys;
 	private SerialPort sPort;
 
-	public ArduinoReader (ElevatorSystem elSys)
+	void Start()
 	{
-		_elSys = elSys;
-        sPort = new SerialPort("COM7");	
-        Task task = new Task(() => ReadCycle());
-        task.Start();
-	}
+        sPort = new SerialPort("COM7");
+        sPort.Open();          
+    }
 
-	private void ReadCycle ()
-	{
-		try
-		{
-            sPort.Open();
-			while (true)
-			{
-				if (sPort.BytesToRead > 0)
-				{
-					string msg = sPort.ReadLine ();
-					_elSys.FindNewCard (msg);
-				}
-				Thread.Sleep (10);
-			}
-		}
-		catch
-		{
-			throw;
-		}
-		finally
-		{
-			sPort.Close ();
-		}
-
-	}
+    public void FixedUpdate()
+    {
+        if (sPort.BytesToRead > 0)
+        {
+            string msg = sPort.ReadLine();
+            _elSys.FindNewCard(msg);
+        }
+    }
 }
