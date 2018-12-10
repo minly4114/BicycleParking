@@ -10,7 +10,7 @@ public class ArduinoReader : MonoBehaviour
 
 	void Start()
 	{
-        sPort = new SerialPort("COM7");
+        sPort = new SerialPort("COM8");
         sPort.Open();          
     }
 
